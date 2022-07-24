@@ -1,43 +1,39 @@
-import { AiFillCamera, AiFillVideoCamera } from "react-icons/ai";
+import useFrames from "./useFrames";
+import useCapture from "./useCapture";
+
+import Header from "./Header";
+import Frames from "./Frames";
+import Toolbar from "./Toolbar";
 
 import "./App.css";
 
-const App = () => (
-  <div className="app">
-    <header className="header">
-      <h1>Stop Motion Recorder</h1>
-      <span className="by-line">
-        Made with ❤️ by{" "}
-        <a
-          href="https://github.com/bence-toth/stop-motion-recorder"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Bence A. Tóth
-        </a>
-      </span>
-    </header>
-    <main className="main"></main>
-    <aside className="sidebar"></aside>
-    <footer className="toolbar">
-      <div>
-        <button>
-          <span className="icon">
-            <AiFillCamera />
-          </span>
-          Capture
-        </button>
-      </div>
-      <div>
-        <button>
-          <span className="icon">
-            <AiFillVideoCamera />
-          </span>
-          Preview
-        </button>
-      </div>
-    </footer>
-  </div>
-);
+export interface Frame {
+  timestamp: number;
+  dataURL: string;
+}
+
+const App = () => {
+  const { frames, addFrame } = useFrames();
+  const { videoElementRef, lastPictureElementRef, onCapture } = useCapture({
+    addFrame,
+  });
+
+  return (
+    <div className="app">
+      <Header />
+      <main className="main">
+        <div className="main-inner-wrapper">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video className="video" autoPlay ref={videoElementRef}></video>
+          <canvas className="last-picture" ref={lastPictureElementRef} />
+        </div>
+      </main>
+      <aside className="sidebar">
+        <Frames frames={frames} />
+      </aside>
+      <Toolbar onCapture={onCapture} />
+    </div>
+  );
+};
 
 export default App;
