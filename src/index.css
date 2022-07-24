@@ -12,6 +12,10 @@ body,
   height: 100%;
 }
 
+html {
+  font-size: clamp(14px, 1.25vw, 18px);
+}
+
 body {
   font-family: "Ibarra Real Nova", serif;
 }

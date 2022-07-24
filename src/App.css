@@ -1,9 +1,21 @@
 .app {
   display: grid;
   height: 100%;
-  grid-template-columns: auto 480px;
-  grid-template-rows: 64px auto 80px;
+  grid-template-columns: auto 30rem;
+  grid-template-rows: 4rem auto 5rem;
   background-color: hsl(0deg 0% 90%);
+}
+
+@media (max-width: 1200px) {
+  .app {
+    grid-template-columns: auto 24rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .app {
+    grid-template-columns: auto 18rem;
+  }
 }
 
 .header {
@@ -12,19 +24,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 16px;
+  padding-inline: 1rem;
 }
 
 .header h1 {
   font-family: Poppins, sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: normal;
   color: hsl(0deg 0% 15%);
 }
 
 .header .by-line {
   color: hsl(0deg 0% 15%);
-  font-size: 14px;
+  font-size: 0.85rem;
 }
 
 .header .by-line a {
@@ -56,24 +68,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 16px;
+  padding-inline: 1rem;
 }
 
 .toolbar button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding-block: 12px;
-  padding-inline: 16px;
+  gap: 0.5rem;
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
   cursor: pointer;
   text-transform: uppercase;
   border: 2px solid hsl(0deg 0% 15%);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: transparent;
   font-family: Poppins, sans-serif;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.85rem;
   color: hsl(0deg 0% 15%);
   transition: background-color 0.25s;
 }
@@ -86,5 +98,5 @@
 
 .toolbar button .icon {
   display: flex;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
