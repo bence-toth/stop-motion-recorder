@@ -60,7 +60,12 @@
 }
 
 .toolbar button {
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-block: 12px;
+  padding-inline: 16px;
   cursor: pointer;
   text-transform: uppercase;
   border: 2px solid hsl(0deg 0% 15%);
@@ -77,4 +82,9 @@
 .toolbar button:focus,
 .toolbar button:active {
   background-color: hsla(0deg 0% 0% / 10%);
+}
+
+.toolbar button .icon {
+  display: flex;
+  font-size: 24px;
 }

@@ -1,3 +1,5 @@
+import { AiFillCamera, AiFillVideoCamera } from "react-icons/ai";
+
 import "./App.css";
 
 const App = () => (
@@ -19,10 +21,20 @@ const App = () => (
     <aside className="sidebar"></aside>
     <footer className="toolbar">
       <div>
-        <button>Capture</button>
+        <button>
+          <span className="icon">
+            <AiFillCamera />
+          </span>
+          Capture
+        </button>
       </div>
       <div>
-        <button>Preview</button>
+        <button>
+          <span className="icon">
+            <AiFillVideoCamera />
+          </span>
+          Preview
+        </button>
       </div>
     </footer>
   </div>
