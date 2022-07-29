@@ -14,8 +14,8 @@ const useCapture = ({ addFrame }: UseCaptureParams) => {
       videoElement.current = renderedVideoElement;
       window.navigator.mediaDevices
         .getUserMedia({
-          video: true,
-          audio: true,
+          video: { width: 1280, height: 720 },
+          audio: false,
         })
         .then((stream) => {
           renderedVideoElement.srcObject = stream;
