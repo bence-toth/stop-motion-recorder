@@ -10,9 +10,10 @@ import classNames from "classnames";
 interface FramesProps {
   frames: Frame[];
   toggleFrameSelection: (frameId: number) => void;
+  deleteFrame: (frameId: number) => void;
 }
 
-const Frames = ({ frames, toggleFrameSelection }: FramesProps) => {
+const Frames = ({ frames, toggleFrameSelection, deleteFrame }: FramesProps) => {
   const framesEndRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
@@ -49,7 +50,13 @@ const Frames = ({ frames, toggleFrameSelection }: FramesProps) => {
                 <AiFillCheckCircle />
               </div>
             </button>
-            <button className="delete" disabled={frame.isSelected}>
+            <button
+              className="delete"
+              onClick={() => {
+                deleteFrame(frame.id);
+              }}
+              disabled={frame.isSelected}
+            >
               <AiFillDelete />
             </button>
             <img src={frame.dataURL} alt="" />

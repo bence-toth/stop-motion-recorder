@@ -14,7 +14,8 @@ export interface Frame {
 }
 
 const App = () => {
-  const { frames, addFrame, toggleFrameSelection } = useFrames();
+  const { frames, lastFrame, addFrame, deleteFrame, toggleFrameSelection } =
+    useFrames();
   const { videoElementRef, lastPictureElementRef, onCapture } = useCapture({
     addFrame,
   });
@@ -27,17 +28,17 @@ const App = () => {
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video className="video" autoPlay ref={videoElementRef}></video>
           <canvas className="last-picture-canvas" ref={lastPictureElementRef} />
-          {frames.length > 0 && (
-            <img
-              className="last-picture"
-              src={frames[frames.length - 1].dataURL}
-              alt=""
-            />
+          {lastFrame !== null && (
+            <img className="last-picture" src={lastFrame.dataURL} alt="" />
           )}
         </div>
       </main>
       <aside className="sidebar">
-        <Frames frames={frames} toggleFrameSelection={toggleFrameSelection} />
+        <Frames
+          frames={frames}
+          toggleFrameSelection={toggleFrameSelection}
+          deleteFrame={deleteFrame}
+        />
       </aside>
       <Toolbar onCapture={onCapture} />
     </div>
