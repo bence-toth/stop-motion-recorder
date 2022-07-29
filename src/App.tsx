@@ -1,3 +1,5 @@
+import { useRef, useLayoutEffect } from "react";
+
 import useFrames from "./useFrames";
 import useCapture from "./useCapture";
 
@@ -16,9 +18,11 @@ export interface FrameType {
 const App = () => {
   const { frames, lastFrame, addFrame, deleteFrame, toggleFrameSelection } =
     useFrames();
-  const { videoElementRef, lastPictureElementRef, onCapture } = useCapture({
-    addFrame,
-  });
+
+  const { videoElementRef, lastPictureElementRef, onCapture, framesEndRef } =
+    useCapture({
+      addFrame,
+    });
 
   return (
     <div className="app">
@@ -38,6 +42,7 @@ const App = () => {
           frames={frames}
           toggleFrameSelection={toggleFrameSelection}
           deleteFrame={deleteFrame}
+          framesEndRef={framesEndRef}
         />
       </aside>
       <Toolbar onCapture={onCapture} />

@@ -34,6 +34,8 @@ const useCapture = ({ addFrame }: UseCaptureParamsType) => {
     []
   );
 
+  const framesEndRef = useRef<HTMLDivElement | null>(null);
+
   const onCapture = useCallback(() => {
     if (
       lastPictureCanvasElement.current !== null &&
@@ -60,6 +62,13 @@ const useCapture = ({ addFrame }: UseCaptureParamsType) => {
         id: Date.now(),
         isSelected: false,
       });
+      requestAnimationFrame(() => {
+        if (framesEndRef.current !== null) {
+          framesEndRef.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      });
     }
   }, [addFrame]);
 
@@ -67,6 +76,7 @@ const useCapture = ({ addFrame }: UseCaptureParamsType) => {
     videoElementRef,
     lastPictureElementRef,
     onCapture,
+    framesEndRef,
   };
 };
 

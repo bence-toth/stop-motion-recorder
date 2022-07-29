@@ -1,5 +1,3 @@
-import { useRef, useLayoutEffect } from "react";
-
 import Frame from "./Frame";
 
 import type { FrameType } from "./App";
@@ -10,27 +8,17 @@ interface FramesPropsType {
   frames: FrameType[];
   toggleFrameSelection: (frameId: number) => void;
   deleteFrame: (frameId: number) => void;
+  framesEndRef: {
+    current: HTMLDivElement | null;
+  };
 }
 
 const Frames = ({
   frames,
   toggleFrameSelection,
   deleteFrame,
+  framesEndRef,
 }: FramesPropsType) => {
-  const framesEndRef = useRef<HTMLDivElement | null>(null);
-
-  useLayoutEffect(() => {
-    if (frames.length > 0) {
-      requestAnimationFrame(() => {
-        if (framesEndRef.current !== null) {
-          framesEndRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
-        }
-      });
-    }
-  }, [frames.length]);
-
   if (frames.length === 0) {
     return null;
   }
