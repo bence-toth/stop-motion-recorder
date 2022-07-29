@@ -55,7 +55,11 @@ const useCapture = ({ addFrame }: UseCaptureParams) => {
         );
       const imageDataURL =
         lastPictureCanvasElement.current.toDataURL("image/jpeg");
-      addFrame({ dataURL: imageDataURL, timestamp: Date.now() });
+      addFrame({
+        dataURL: imageDataURL,
+        id: Date.now(),
+        isSelected: false,
+      });
     }
   }, [addFrame]);
 

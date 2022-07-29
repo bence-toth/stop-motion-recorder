@@ -8,12 +8,13 @@ import Toolbar from "./Toolbar";
 import "./App.css";
 
 export interface Frame {
-  timestamp: number;
+  id: number;
   dataURL: string;
+  isSelected: boolean;
 }
 
 const App = () => {
-  const { frames, addFrame } = useFrames();
+  const { frames, addFrame, toggleFrameSelection } = useFrames();
   const { videoElementRef, lastPictureElementRef, onCapture } = useCapture({
     addFrame,
   });
@@ -36,7 +37,7 @@ const App = () => {
         </div>
       </main>
       <aside className="sidebar">
-        <Frames frames={frames} />
+        <Frames frames={frames} toggleFrameSelection={toggleFrameSelection} />
       </aside>
       <Toolbar onCapture={onCapture} />
     </div>

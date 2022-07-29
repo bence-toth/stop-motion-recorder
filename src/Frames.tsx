@@ -2,13 +2,17 @@ import { useRef, useLayoutEffect } from "react";
 
 import type { Frame } from "./App";
 
+import { AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
+
 import "./Frames.css";
+import classNames from "classnames";
 
 interface FramesProps {
   frames: Frame[];
+  toggleFrameSelection: (frameId: number) => void;
 }
 
-const Frames = ({ frames }: FramesProps) => {
+const Frames = ({ frames, toggleFrameSelection }: FramesProps) => {
   const framesEndRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
@@ -31,7 +35,23 @@ const Frames = ({ frames }: FramesProps) => {
     <>
       <ul className="frames">
         {frames.map((frame) => (
-          <li key={frame.timestamp} className="frame">
+          <li
+            key={frame.id}
+            className={classNames("frame", { selected: frame.isSelected })}
+          >
+            <button
+              className="select"
+              onClick={() => {
+                toggleFrameSelection(frame.id);
+              }}
+            >
+              <div className="icon">
+                <AiFillCheckCircle />
+              </div>
+            </button>
+            <button className="delete" disabled={frame.isSelected}>
+              <AiFillDelete />
+            </button>
             <img src={frame.dataURL} alt="" />
           </li>
         ))}
