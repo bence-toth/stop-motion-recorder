@@ -25,7 +25,14 @@ const App = () => {
         <div className="main-inner-wrapper">
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video className="video" autoPlay ref={videoElementRef}></video>
-          <canvas className="last-picture" ref={lastPictureElementRef} />
+          <canvas className="last-picture-canvas" ref={lastPictureElementRef} />
+          {frames.length > 0 && (
+            <img
+              className="last-picture"
+              src={frames[frames.length - 1].dataURL}
+              alt=""
+            />
+          )}
         </div>
       </main>
       <aside className="sidebar">
