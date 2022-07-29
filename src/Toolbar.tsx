@@ -9,7 +9,7 @@ interface ToolbarPropsType {
 
 const Toolbar = ({ onCapture, onDeleteSelectedFrames }: ToolbarPropsType) => (
   <footer className="toolbar">
-    <div>
+    <div className="buttons-wrapper">
       <button onClick={onCapture}>
         <span className="icon">
           <AiFillCamera />
@@ -17,7 +17,7 @@ const Toolbar = ({ onCapture, onDeleteSelectedFrames }: ToolbarPropsType) => (
         Capture
       </button>
     </div>
-    <div>
+    <div className="buttons-wrapper">
       <button onClick={onDeleteSelectedFrames}>
         <span className="icon">
           <AiFillDelete />
