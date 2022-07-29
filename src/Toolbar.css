@@ -7,6 +7,11 @@
   padding-inline: 1rem;
 }
 
+.toolbar .buttons-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
 .toolbar button {
   display: flex;
   align-items: center;

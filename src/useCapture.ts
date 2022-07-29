@@ -1,12 +1,12 @@
 import { useCallback, useRef } from "react";
 
-import type { Frame } from "./App";
+import type { FrameType } from "./App";
 
-interface UseCaptureParams {
-  addFrame: (frame: Frame) => void;
+interface UseCaptureParamsType {
+  onAddFrame: (frame: FrameType) => void;
 }
 
-const useCapture = ({ addFrame }: UseCaptureParams) => {
+const useCapture = ({ onAddFrame }: UseCaptureParamsType) => {
   const videoElement = useRef<HTMLVideoElement | null>(null);
 
   const videoElementRef = useCallback(
@@ -14,8 +14,8 @@ const useCapture = ({ addFrame }: UseCaptureParams) => {
       videoElement.current = renderedVideoElement;
       window.navigator.mediaDevices
         .getUserMedia({
-          video: true,
-          audio: true,
+          video: { width: 1280, height: 720 },
+          audio: false,
         })
         .then((stream) => {
           renderedVideoElement.srcObject = stream;
@@ -33,6 +33,8 @@ const useCapture = ({ addFrame }: UseCaptureParams) => {
     },
     []
   );
+
+  const framesEndRef = useRef<HTMLDivElement | null>(null);
 
   const onCapture = useCallback(() => {
     if (
@@ -55,14 +57,26 @@ const useCapture = ({ addFrame }: UseCaptureParams) => {
         );
       const imageDataURL =
         lastPictureCanvasElement.current.toDataURL("image/jpeg");
-      addFrame({ dataURL: imageDataURL, timestamp: Date.now() });
+      onAddFrame({
+        dataURL: imageDataURL,
+        id: Date.now(),
+        isSelected: false,
+      });
+      requestAnimationFrame(() => {
+        if (framesEndRef.current !== null) {
+          framesEndRef.current.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      });
     }
-  }, [addFrame]);
+  }, [onAddFrame]);
 
   return {
     videoElementRef,
     lastPictureElementRef,
     onCapture,
+    framesEndRef,
   };
 };
 
