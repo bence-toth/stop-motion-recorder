@@ -1,7 +1,7 @@
 .frame {
   display: flex;
   position: relative;
-  background-color: hsl(0deg 0% 50%);
+  background-color: hsl(0deg 0% 80%);
 }
 
 .frame .toolbar-shadow {
@@ -88,9 +88,11 @@
 
 .frame img {
   width: 100%;
-  transition: transform 0.15s;
+  transition: transform 0.15s, outline-color 0.15s;
+  outline: 2px solid transparent;
 }
 
 .frame.selected img {
   transform: scale(0.95);
+  outline-color: white;
 }

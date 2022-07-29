@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from "react";
+import { useMemo } from "react";
 
 import useFrames from "./useFrames";
 import useCapture from "./useCapture";
@@ -30,6 +30,11 @@ const App = () => {
       onAddFrame,
     });
 
+  const areFramesSelected = useMemo(
+    () => frames.some((frame) => frame.isSelected),
+    [frames]
+  );
+
   return (
     <div className="app">
       <Header />
@@ -52,6 +57,7 @@ const App = () => {
         />
       </aside>
       <Toolbar
+        areFramesSelected={areFramesSelected}
         onCapture={onCapture}
         onDeleteSelectedFrames={onDeleteSelectedFrames}
       />
