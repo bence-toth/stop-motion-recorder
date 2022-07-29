@@ -1,12 +1,12 @@
 import { useCallback, useRef } from "react";
 
-import type { Frame } from "./App";
+import type { FrameType } from "./App";
 
-interface UseCaptureParams {
-  addFrame: (frame: Frame) => void;
+interface UseCaptureParamsType {
+  addFrame: (frame: FrameType) => void;
 }
 
-const useCapture = ({ addFrame }: UseCaptureParams) => {
+const useCapture = ({ addFrame }: UseCaptureParamsType) => {
   const videoElement = useRef<HTMLVideoElement | null>(null);
 
   const videoElementRef = useCallback(

@@ -1,16 +1,16 @@
 import { useState, useMemo, useCallback } from "react";
 
-import type { Frame } from "./App";
+import type { FrameType } from "./App";
 
 const useFrames = () => {
-  const [frames, setFrames] = useState<Frame[]>([]);
+  const [frames, setFrames] = useState<FrameType[]>([]);
 
   const lastFrame = useMemo(
     () => (frames.length > 0 ? frames[frames.length - 1] : null),
     [frames]
   );
 
-  const addFrame = useCallback((newFrame: Frame) => {
+  const addFrame = useCallback((newFrame: FrameType) => {
     setFrames((previousFrames) => [...previousFrames, newFrame]);
   }, []);
 

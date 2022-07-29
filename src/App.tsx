@@ -7,7 +7,7 @@ import Toolbar from "./Toolbar";
 
 import "./App.css";
 
-export interface Frame {
+export interface FrameType {
   id: number;
   dataURL: string;
   isSelected: boolean;

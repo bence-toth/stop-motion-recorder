@@ -1,19 +1,22 @@
 import { useRef, useLayoutEffect } from "react";
 
-import type { Frame } from "./App";
+import Frame from "./Frame";
 
-import { AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
+import type { FrameType } from "./App";
 
 import "./Frames.css";
-import classNames from "classnames";
 
-interface FramesProps {
-  frames: Frame[];
+interface FramesPropsType {
+  frames: FrameType[];
   toggleFrameSelection: (frameId: number) => void;
   deleteFrame: (frameId: number) => void;
 }
 
-const Frames = ({ frames, toggleFrameSelection, deleteFrame }: FramesProps) => {
+const Frames = ({
+  frames,
+  toggleFrameSelection,
+  deleteFrame,
+}: FramesPropsType) => {
   const framesEndRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
@@ -36,31 +39,12 @@ const Frames = ({ frames, toggleFrameSelection, deleteFrame }: FramesProps) => {
     <>
       <ul className="frames">
         {frames.map((frame) => (
-          <li
+          <Frame
             key={frame.id}
-            className={classNames("frame", { selected: frame.isSelected })}
-          >
-            <button
-              className="select"
-              onClick={() => {
-                toggleFrameSelection(frame.id);
-              }}
-            >
-              <div className="icon">
-                <AiFillCheckCircle />
-              </div>
-            </button>
-            <button
-              className="delete"
-              onClick={() => {
-                deleteFrame(frame.id);
-              }}
-              disabled={frame.isSelected}
-            >
-              <AiFillDelete />
-            </button>
-            <img src={frame.dataURL} alt="" />
-          </li>
+            frame={frame}
+            toggleFrameSelection={toggleFrameSelection}
+            deleteFrame={deleteFrame}
+          />
         ))}
       </ul>
       <div ref={framesEndRef} />

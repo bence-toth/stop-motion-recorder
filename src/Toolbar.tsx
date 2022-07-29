@@ -2,11 +2,11 @@ import { AiFillCamera, AiFillVideoCamera } from "react-icons/ai";
 
 import "./Toolbar.css";
 
-interface ToolbarProps {
+interface ToolbarPropsType {
   onCapture: () => void;
 }
 
-const Toolbar = ({ onCapture }: ToolbarProps) => (
+const Toolbar = ({ onCapture }: ToolbarPropsType) => (
   <footer className="toolbar">
     <div>
       <button onClick={onCapture}>
