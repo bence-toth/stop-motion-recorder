@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import classNames from "classnames";
-import { AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
+import { BsCircle, BsFillCheckCircleFill } from "react-icons/bs";
 
 import type { FrameType } from "./App";
 
@@ -30,9 +31,10 @@ const Frame = ({
       key={frame.id}
       className={classNames("frame", { selected: frame.isSelected })}
     >
+      <div className="toolbar-shadow"></div>
       <button className="select" onClick={onSelectButtonClick}>
         <div className="icon">
-          <AiFillCheckCircle />
+          {frame.isSelected ? <BsFillCheckCircleFill /> : <BsCircle />}
         </div>
       </button>
       <button
