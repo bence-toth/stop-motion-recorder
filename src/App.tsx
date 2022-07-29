@@ -16,12 +16,18 @@ export interface FrameType {
 }
 
 const App = () => {
-  const { frames, lastFrame, addFrame, deleteFrame, toggleFrameSelection } =
-    useFrames();
+  const {
+    frames,
+    lastFrame,
+    onAddFrame,
+    onDeleteFrame,
+    onDeleteSelectedFrames,
+    onToggleFrameSelection,
+  } = useFrames();
 
   const { videoElementRef, lastPictureElementRef, onCapture, framesEndRef } =
     useCapture({
-      addFrame,
+      onAddFrame,
     });
 
   return (
@@ -40,12 +46,15 @@ const App = () => {
       <aside className="sidebar">
         <Frames
           frames={frames}
-          toggleFrameSelection={toggleFrameSelection}
-          deleteFrame={deleteFrame}
+          toggleFrameSelection={onToggleFrameSelection}
+          deleteFrame={onDeleteFrame}
           framesEndRef={framesEndRef}
         />
       </aside>
-      <Toolbar onCapture={onCapture} />
+      <Toolbar
+        onCapture={onCapture}
+        onDeleteSelectedFrames={onDeleteSelectedFrames}
+      />
     </div>
   );
 };

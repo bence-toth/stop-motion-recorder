@@ -1,12 +1,13 @@
-import { AiFillCamera, AiFillVideoCamera } from "react-icons/ai";
+import { AiFillCamera, AiFillVideoCamera, AiFillDelete } from "react-icons/ai";
 
 import "./Toolbar.css";
 
 interface ToolbarPropsType {
   onCapture: () => void;
+  onDeleteSelectedFrames: () => void;
 }
 
-const Toolbar = ({ onCapture }: ToolbarPropsType) => (
+const Toolbar = ({ onCapture, onDeleteSelectedFrames }: ToolbarPropsType) => (
   <footer className="toolbar">
     <div>
       <button onClick={onCapture}>
@@ -17,6 +18,12 @@ const Toolbar = ({ onCapture }: ToolbarPropsType) => (
       </button>
     </div>
     <div>
+      <button onClick={onDeleteSelectedFrames}>
+        <span className="icon">
+          <AiFillDelete />
+        </span>
+        Delete selected
+      </button>
       <button>
         <span className="icon">
           <AiFillVideoCamera />

@@ -10,17 +10,23 @@ const useFrames = () => {
     [frames]
   );
 
-  const addFrame = useCallback((newFrame: FrameType) => {
+  const onAddFrame = useCallback((newFrame: FrameType) => {
     setFrames((previousFrames) => [...previousFrames, newFrame]);
   }, []);
 
-  const deleteFrame = useCallback((frameId: number) => {
+  const onDeleteFrame = useCallback((frameId: number) => {
     setFrames((previousFrames) =>
       previousFrames.filter((frame) => frame.id !== frameId)
     );
   }, []);
 
-  const toggleFrameSelection = useCallback((frameId: number) => {
+  const onDeleteSelectedFrames = useCallback(() => {
+    setFrames((previousFrames) =>
+      previousFrames.filter((frame) => !frame.isSelected)
+    );
+  }, []);
+
+  const onToggleFrameSelection = useCallback((frameId: number) => {
     setFrames((previousFrames) =>
       previousFrames.map((frame) => {
         if (frame.id !== frameId) {
@@ -34,7 +40,14 @@ const useFrames = () => {
     );
   }, []);
 
-  return { frames, lastFrame, addFrame, deleteFrame, toggleFrameSelection };
+  return {
+    frames,
+    lastFrame,
+    onAddFrame,
+    onDeleteFrame,
+    onDeleteSelectedFrames,
+    onToggleFrameSelection,
+  };
 };
 
 export default useFrames;

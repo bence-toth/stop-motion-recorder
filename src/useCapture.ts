@@ -3,10 +3,10 @@ import { useCallback, useRef } from "react";
 import type { FrameType } from "./App";
 
 interface UseCaptureParamsType {
-  addFrame: (frame: FrameType) => void;
+  onAddFrame: (frame: FrameType) => void;
 }
 
-const useCapture = ({ addFrame }: UseCaptureParamsType) => {
+const useCapture = ({ onAddFrame }: UseCaptureParamsType) => {
   const videoElement = useRef<HTMLVideoElement | null>(null);
 
   const videoElementRef = useCallback(
@@ -57,7 +57,7 @@ const useCapture = ({ addFrame }: UseCaptureParamsType) => {
         );
       const imageDataURL =
         lastPictureCanvasElement.current.toDataURL("image/jpeg");
-      addFrame({
+      onAddFrame({
         dataURL: imageDataURL,
         id: Date.now(),
         isSelected: false,
@@ -70,7 +70,7 @@ const useCapture = ({ addFrame }: UseCaptureParamsType) => {
         }
       });
     }
-  }, [addFrame]);
+  }, [onAddFrame]);
 
   return {
     videoElementRef,
