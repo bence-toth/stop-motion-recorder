@@ -3,6 +3,7 @@
 This is a simple web app for kids to record stop motion videos using their device's camera. The app is built using HTML, CSS, and TypeScript.
 
 # Features
+
 - Easy-to-use interface designed for kids
 - Record stop motion videos using your device's camera
 - Play back and review your creations
