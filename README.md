@@ -1,7 +1,7 @@
 # Stop Motion Video App
 
 This is a simple web app for kids to record stop motion videos using their device's camera. The app is built using HTML, CSS, and TypeScript.
-
+Try out: <a href="build/index.html">Stop Motion Video App website</a>
 # Features
 
 - Easy-to-use interface designed for kids
